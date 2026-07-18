@@ -1,7 +1,7 @@
 import "server-only";
 import { GoogleGenAI } from "@google/genai";
 import type { z } from "zod";
-import type { ChatMessage, FutureLetter, Insights, SparkContent } from "./validation";
+import type { ChatMessage, ChatMode, FutureLetter, Insights, SparkContent } from "./validation";
 import {
   futureLetterSchema,
   insightsSchema,
@@ -30,7 +30,7 @@ reason behind it." You never judge, lecture, shame, or moralize — the user
 should always feel understood, never diagnosed. You speak like a warm,
 emotionally attuned friend, not a clinician or a form.`;
 
-const CHAT_MODE_INSTRUCTIONS: Record<"onboarding" | "coach" | "emergency", string> = {
+const CHAT_MODE_INSTRUCTIONS: Record<ChatMode, string> = {
   onboarding: `${RESET_PERSONA}
 
 This is the user's first conversation with you. Ask ONE short, natural,
@@ -96,7 +96,7 @@ function toContents(messages: ChatMessage[]) {
 
 export async function generateChatReply(
   messages: ChatMessage[],
-  mode: "onboarding" | "coach" | "emergency",
+  mode: ChatMode,
 ): Promise<string> {
   const ai = getClient();
   const response = await ai.models.generateContent({

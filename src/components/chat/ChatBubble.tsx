@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import type { ChatMessage } from "@/lib/validation";
 
-export function ChatBubble({ message }: { message: ChatMessage }) {
+function ChatBubbleImpl({ message }: { message: ChatMessage }) {
   const isUser = message.role === "user";
   return (
     <motion.div
@@ -24,6 +25,8 @@ export function ChatBubble({ message }: { message: ChatMessage }) {
     </motion.div>
   );
 }
+
+export const ChatBubble = memo(ChatBubbleImpl);
 
 export function TypingIndicator() {
   return (

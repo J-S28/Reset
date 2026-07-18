@@ -117,6 +117,7 @@ export const insightsRequestSchema = z.object({
 });
 
 export const chatModeSchema = z.enum(["onboarding", "coach", "emergency"]);
+export type ChatMode = z.infer<typeof chatModeSchema>;
 
 export const chatRequestWithModeSchema = chatRequestSchema.extend({
   mode: chatModeSchema.default("onboarding"),

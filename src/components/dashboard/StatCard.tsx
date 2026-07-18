@@ -1,7 +1,8 @@
+import { memo } from "react";
 import type { LucideIcon } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
 
-export function StatCard({
+function StatCardImpl({
   icon: Icon,
   label,
   value,
@@ -25,3 +26,5 @@ export function StatCard({
     </GlassCard>
   );
 }
+
+export const StatCard = memo(StatCardImpl);

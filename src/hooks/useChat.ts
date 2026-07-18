@@ -1,9 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import type { ChatMessage } from "@/lib/validation";
-
-type ChatMode = "onboarding" | "coach" | "emergency";
+import type { ChatMessage, ChatMode } from "@/lib/validation";
 
 interface UseChatOptions {
   mode: ChatMode;
