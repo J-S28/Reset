@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Heart, Sparkle, Target } from "lucide-react";
+import { ArrowLeft, Heart, Lightbulb, Sparkle, Target, TrendingUp } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
@@ -67,6 +67,20 @@ export default function WhyPage() {
               ))}
             </ul>
 
+            {profile.goals.length > 0 && (
+              <>
+                <h3 className="mt-6 text-sm font-medium text-foreground-muted">Where you&apos;re headed</h3>
+                <ul className="mt-2 space-y-2">
+                  {profile.goals.map((g) => (
+                    <li key={g} className="flex items-start gap-2 text-sm">
+                      <Target size={14} className="mt-0.5 shrink-0 text-indigo-soft" aria-hidden="true" />
+                      {g}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+
             <h3 className="mt-6 text-sm font-medium text-foreground-muted">What lights you up</h3>
             <ul className="mt-2 flex flex-wrap gap-2">
               {profile.favorites.map((f) => (
@@ -95,9 +109,9 @@ export default function WhyPage() {
         </div>
 
         <section className="mt-12">
-          <h2 className="font-display text-2xl">What&apos;s underneath it</h2>
+          <h2 className="font-display text-2xl">Root Cause Analysis</h2>
           <p className="mt-1 text-sm text-foreground-muted">
-            Not a diagnosis — just a gentle, honest read of the pattern.
+            Not a diagnosis — a gentle, honest read of WHY the habit shows up, not just what it is.
           </p>
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <StatCard icon={Target} label="Primary trigger" value={behavior.primaryTrigger} />
@@ -112,6 +126,20 @@ export default function WhyPage() {
               <p className="mt-2 text-sm">{behavior.emotionalPattern}</p>
               <h3 className="mt-4 text-sm font-medium text-foreground-muted">Recovery strategy</h3>
               <p className="mt-2 text-sm text-healing-soft">{behavior.recoveryStrategy}</p>
+            </GlassCard>
+            <GlassCard glow="none" className="flex items-start gap-3">
+              <Lightbulb size={16} className="mt-0.5 shrink-0 text-amber" aria-hidden="true" />
+              <div>
+                <h3 className="text-sm font-medium text-foreground-muted">Why RESET thinks this</h3>
+                <p className="mt-1 text-sm">{behavior.rationale}</p>
+              </div>
+            </GlassCard>
+            <GlassCard glow="none" className="flex items-start gap-3">
+              <TrendingUp size={16} className="mt-0.5 shrink-0 text-indigo-soft" aria-hidden="true" />
+              <div>
+                <h3 className="text-sm font-medium text-foreground-muted">Likely next risk window</h3>
+                <p className="mt-1 text-sm">{behavior.predictedRiskWindow}</p>
+              </div>
             </GlassCard>
           </div>
         </section>

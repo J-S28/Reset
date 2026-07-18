@@ -48,6 +48,7 @@ export const purposeProfileRequestSchema = z.object({
 export const purposeProfileSchema = z.object({
   identity: z.string().max(300),
   dreams: z.array(z.string().max(200)).max(6),
+  goals: z.array(z.string().max(160)).max(4),
   values: z.array(z.string().max(120)).max(6),
   favorites: z.array(z.string().max(120)).max(8),
   motivation: z.string().max(400),
@@ -74,6 +75,8 @@ export const behaviorAnalysisSchema = z.object({
   emotionalPattern: z.string().max(300),
   confidenceScore: z.number().min(0).max(100),
   recoveryStrategy: z.string().max(400),
+  rationale: z.string().max(240),
+  predictedRiskWindow: z.string().max(160),
 });
 
 export type BehaviorAnalysis = z.infer<typeof behaviorAnalysisSchema>;
