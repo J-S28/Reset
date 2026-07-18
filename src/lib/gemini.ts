@@ -8,7 +8,7 @@ import {
   sparkResponseSchema,
 } from "./validation";
 
-const MODEL = "gemini-2.5-flash";
+const MODEL = "gemini-flash-latest";
 
 let client: GoogleGenAI | null = null;
 
